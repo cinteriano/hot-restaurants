@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
     <title>Searing Restaurant</title>
 
 </head>
@@ -34,7 +35,7 @@
           </div>
 
         </div>
-
+        <div class= "tables"></div>
         <footer class="footer">
 
             <div class="container">
@@ -46,7 +47,139 @@
             </div>
     
           </footer>
+          <script>
+    
+     
       
+          
+
+          
+            $.ajax({
+           url: "/api/reservation",
+           method: "GET",
+        
+           
+       })
+         
+         .then((data) => {
+           console.log(data);
+           
+           var tablediv = $(".tables")
+           
+           for( var i =0 ; i < data.length; i++){
+            tablediv.append(`<div>${data[i].customerName}
+              ${data[i].customerEmail}
+              ${data[i].customerID}
+              ${data[i].phoneNumber}
+              </div>`)
+            
+            
+            
+            
+            console.log(data[i])
+
+
+
+           }
+
+           // if (data) {
+           //   statsEl.setAttribute('style', 'display: inline');
+           //   nameEl.textContent = name;
+           //   roleEl.textContent = role;
+           //   ageEl.textContent = age;
+           //   fpEl.textContent = forcePoints;
+           // } else {
+           //   nameEl.textContent =
+           //     'The force is not strong with this one. Your character was not found.';
+           //   statsEl.setAttribute('style', 'display: none');
+           // }
+         })
+         .catch((error) => {
+           console.error(error);
+         });
+     
+
+
+
+
+
+         
+         $.ajax({
+           url: "/api/waitlist",
+           method: "GET",
+        
+           
+       })
+         
+         .then((data) => {
+           console.log(data);
+           
+           var tablediv = $(".tables")
+           
+           for( var i =0 ; i < data.length; i++){
+            tablediv.append(`<div>${data[i].customerName}
+              ${data[i].customerEmail}
+              ${data[i].customerID}
+              ${data[i].phoneNumber}
+              </div>`)
+            
+            
+            
+            
+            console.log(data[i])
+
+
+
+           }
+
+           // if (data) {
+           //   statsEl.setAttribute('style', 'display: inline');
+           //   nameEl.textContent = name;
+           //   roleEl.textContent = role;
+           //   ageEl.textContent = age;
+           //   fpEl.textContent = forcePoints;
+           // } else {
+           //   nameEl.textContent =
+           //     'The force is not strong with this one. Your character was not found.';
+           //   statsEl.setAttribute('style', 'display: none');
+           // }
+         })
+         .catch((error) => {
+           console.error(error);
+         });
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
 </body>
 

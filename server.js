@@ -46,32 +46,24 @@ app.get('/api/waitlist', (req, res) => {
 });
 
 
-if (reservation.length < 5) {
+
   app.post('/api/reservation', (req, res) => {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body parsing middleware
-  const newReservation = req.body;
-
-  console.log(newReservation);
-
-  // We then add the json the user sent to the character array
-  reservation.push(newReservation);
-
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body parsing middleware
+    const newReservation = req.body;
+    console.log(newReservation);
+    if(reservation.length < 5) {
+      // We then add the json the user sent to the character array
+      reservation.push(newReservation);
+      res.json(reservation)
+    } else {
+      waitlist.push(newReservation);
+      res.json(waitlist)
+    }
   // We then display the JSON to the users
-  res.json(newReservation);
 });
-} else {
-  app.post('/api/waitlist', (req, res) => {
-    
-    const newWaitlist = req.body;
-  
-    console.log(newWaitlist);
-  
-    waitlist.push(newWaitlist);
-  
-    res.json(newWaitlist);
-  });
-};
+
+
 
 // Listener
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
